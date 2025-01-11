@@ -6,22 +6,20 @@ pipeline {
                 bat 'echo Hello, Windows!'
             }
         }
-    }
-}
         stage('Test') {
             steps {
-                sh '''
-                echo "Запуск стейджа Test"
-                ls -la build_dir
+                bat '''
+                echo Запуск стейджа Test
+                dir build_dir
                 '''
             }
         }
         stage('Deploy') {
             steps {
-                sh '''
-                echo "Запуск стейджа Deploy"
-                rm -rf build_dir
-                echo "Деплой завершено"
+                bat '''
+                echo Запуск стейджа Deploy
+                rmdir /S /Q build_dir
+                echo Деплой завершено
                 '''
             }
         }
