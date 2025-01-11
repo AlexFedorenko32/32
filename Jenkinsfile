@@ -10,7 +10,11 @@ pipeline {
             steps {
                 bat '''
                 echo Запуск стейджа Test
-                dir build_dir
+                if exist build_dir (
+                    dir build_dir
+                ) else (
+                    echo Директорія build_dir не існує
+                )
                 '''
             }
         }
@@ -18,8 +22,12 @@ pipeline {
             steps {
                 bat '''
                 echo Запуск стейджа Deploy
-                rmdir /S /Q build_dir
-                echo Деплой завершено
+                if exist build_dir (
+                    rmdir /S /Q build_dir
+                    echo Деплой завершено
+                ) else (
+                    echo Немає директорії для видалення
+                )
                 '''
             }
         }
