@@ -1,16 +1,13 @@
- pipeline {
+pipeline {
     agent any
     stages {
         stage('Build') {
             steps {
-                sh '''
-                echo "Запуск стейджа Build"
-                mkdir build_dir
-                echo "Hello Jenkins!" > build_dir/output.txt
-                cat build_dir/output.txt
-                '''
+                bat 'echo Hello, Windows!'
             }
         }
+    }
+}
         stage('Test') {
             steps {
                 sh '''
